@@ -3,10 +3,15 @@ $(function () {
         url: baseURL + 'shops/list',
         datatype: "json",
         colModel: [			
-			{ label: 'shopsId', name: 'shopsId', index: 'shops_id', width: 50, key: true },
-			{ label: '用户ID', name: 'userId', index: 'user_id', width: 80 }, 			
+			{ label: '商铺ID', name: 'shopsId', index: 'shops_id', width: 50, key: true },
+			{ label: '店主', name: 'userId', index: 'user_id', width: 80, ditable:true, edittype:'select',
+                editoptions:{value:getUsers()} },
 			{ label: '商铺名称', name: 'shopsName', index: 'shops_name', width: 80 }, 			
-			{ label: '状态：是否可用', name: 'status', index: 'status', width: 80 }, 			
+			{ label: '状态', name: 'status', index: 'status', width: 80, fomatter: function(value, options, row) {
+				return value === 0 ?
+                    '<span class="label label-danger">停业中</span>' :
+                    '<span class="label label-success">营业中</span>';
+			}},
 			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }			
         ],
 		viewrecords: true,
@@ -36,12 +41,19 @@ $(function () {
     });
 });
 
+getUsers = function () {
+    var userNames = "1:姜坤银";
+    return userNames
+}
+
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
 		showList: true,
 		title: null,
-		shops: {}
+		shops: {
+            status:1,
+		}
 	},
 	methods: {
 		query: function () {
@@ -50,7 +62,7 @@ var vm = new Vue({
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.shops = {};
+			vm.shops = { status:1 };
 		},
 		update: function (event) {
 			var shopsId = getSelectedRow();
