@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gzyinyuan.yy.modules.mall.shops.dao.ShopsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity" id="shopsMap">
+        <result property="shopsId" column="shops_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="shopsName" column="shops_name"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity">
+		select * from t_shops where shops_id = #{value}
+	</select>
+
+	<select id="queryList" resultType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity">
+		select * from t_shops
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by shops_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from t_shops 
+	</select>
+	 
+	<insert id="save" parameterType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity" useGeneratedKeys="true" keyProperty="shopsId">
+		insert into t_shops
+		(
+			`user_id`, 
+			`shops_name`, 
+			`status`, 
+			`create_time`
+		)
+		values
+		(
+			#{userId}, 
+			#{shopsName}, 
+			#{status}, 
+			#{createTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity">
+		update t_shops 
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="shopsName != null">`shops_name` = #{shopsName}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+		</set>
+		where shops_id = #{shopsId}
+	</update>
+	
+	<delete id="delete">
+		delete from t_shops where shops_id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from t_shops where shops_id in 
+		<foreach item="shopsId" collection="array" open="(" separator="," close=")">
+			#{shopsId}
+		</foreach>
+	</delete>
+
+</mapper>

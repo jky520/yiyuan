@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : 本地
 Source Server Version : 50535
 Source Host           : localhost:3306
-Source Database       : jky_fast
+Source Database       : db_yiyuan
 
 Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2017-09-07 18:18:49
+Date: 2017-09-18 18:01:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -256,7 +256,7 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RenrenScheduler', 'TASK_1', 'DEFAULT', 'TASK_1', 'DEFAULT', null, '1504780200000', '-1', '5', 'WAITING', 'CRON', '1499339957000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B45597400B67B226A6F624964223A312C226265616E4E616D65223A22746573745461736B222C226D6574686F644E616D65223A2274657374222C22706172616D73223A2272656E72656E222C2263726F6E45787072657373696F6E223A223020302F3330202A202A202A203F222C22737461747573223A302C2272656D61726B223A22E69C89E58F82E695B0E6B58BE8AF95222C2263726561746554696D65223A2244656320312C20323031362031313A31363A343620504D227D7800);
+INSERT INTO `qrtz_triggers` VALUES ('RenrenScheduler', 'TASK_1', 'DEFAULT', 'TASK_1', 'DEFAULT', null, '1505730600000', '1505728800000', '5', 'WAITING', 'CRON', '1499339957000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B45597400B67B226A6F624964223A312C226265616E4E616D65223A22746573745461736B222C226D6574686F644E616D65223A2274657374222C22706172616D73223A2272656E72656E222C2263726F6E45787072657373696F6E223A223020302F3330202A202A202A203F222C22737461747573223A302C2272656D61726B223A22E69C89E58F82E695B0E6B58BE8AF95222C2263726561746554696D65223A2244656320312C20323031362031313A31363A343620504D227D7800);
 INSERT INTO `qrtz_triggers` VALUES ('RenrenScheduler', 'TASK_2', 'DEFAULT', 'TASK_2', 'DEFAULT', null, '1499340600000', '-1', '5', 'PAUSED', 'CRON', '1499339958000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B45597400A47B226A6F624964223A322C226265616E4E616D65223A22746573745461736B222C226D6574686F644E616D65223A227465737432222C2263726F6E45787072657373696F6E223A223020302F3330202A202A202A203F222C22737461747573223A312C2272656D61726B223A22E697A0E58F82E695B0E6B58BE8AF95222C2263726561746554696D65223A2244656320332C203230313620323A35353A353620504D227D7800);
 
 -- ----------------------------
@@ -297,7 +297,7 @@ CREATE TABLE `schedule_job_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`log_id`),
   KEY `job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 -- ----------------------------
 -- Records of schedule_job_log
@@ -321,6 +321,12 @@ INSERT INTO `schedule_job_log` VALUES ('16', '1', 'testTask', 'test', 'renren', 
 INSERT INTO `schedule_job_log` VALUES ('17', '1', 'testTask', 'test', 'renren', '0', null, '1001', '2017-08-03 10:30:00');
 INSERT INTO `schedule_job_log` VALUES ('18', '1', 'testTask', 'test', 'renren', '0', null, '1026', '2017-08-23 17:00:00');
 INSERT INTO `schedule_job_log` VALUES ('19', '1', 'testTask', 'test', 'renren', '0', null, '1031', '2017-09-07 18:00:00');
+INSERT INTO `schedule_job_log` VALUES ('20', '1', 'testTask', 'test', 'renren', '0', null, '1028', '2017-09-11 16:00:00');
+INSERT INTO `schedule_job_log` VALUES ('21', '1', 'testTask', 'test', 'renren', '0', null, '1003', '2017-09-11 16:30:00');
+INSERT INTO `schedule_job_log` VALUES ('22', '1', 'testTask', 'test', 'renren', '0', null, '1032', '2017-09-11 17:30:00');
+INSERT INTO `schedule_job_log` VALUES ('23', '1', 'testTask', 'test', 'renren', '0', null, '1003', '2017-09-11 18:00:00');
+INSERT INTO `schedule_job_log` VALUES ('24', '1', 'testTask', 'test', 'renren', '0', null, '1021', '2017-09-18 17:30:00');
+INSERT INTO `schedule_job_log` VALUES ('25', '1', 'testTask', 'test', 'renren', '0', null, '1003', '2017-09-18 18:00:00');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -354,7 +360,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='系统日志';
 
 -- ----------------------------
 -- Records of sys_log
@@ -364,6 +370,11 @@ INSERT INTO `sys_log` VALUES ('2', 'admin', '保存用户', 'com.jky.modules.sys
 INSERT INTO `sys_log` VALUES ('3', 'admin', '修改角色', 'com.jky.modules.sys.controller.SysRoleController.update()', '{\"roleId\":1,\"roleName\":\"user\",\"remark\":\"普通用户\",\"createUserId\":1,\"menuIdList\":[1,5,6,7,8,9,10,11,12,13,14,27,30],\"createTime\":\"Jul 6, 2017 7:26:37 PM\"}', '127.0.0.1', '2017-07-06 20:23:19');
 INSERT INTO `sys_log` VALUES ('4', 'admin', '修改用户', 'cn.gzyinyuan.yy.modules.sys.controller.SysUserController.update()', '{\"userId\":1,\"username\":\"admin\",\"salt\":\"YzcmCZNvbXocrsz9dm8e\",\"email\":\"admin@yinyuan.cn\",\"mobile\":\"13612345678\",\"status\":1,\"roleIdList\":[],\"createUserId\":1,\"createTime\":\"Nov 11, 2016 11:11:11 AM\"}', '127.0.0.1', '2017-09-07 17:56:20');
 INSERT INTO `sys_log` VALUES ('5', 'admin', '修改用户', 'cn.gzyinyuan.yy.modules.sys.controller.SysUserController.update()', '{\"userId\":1,\"username\":\"admin\",\"salt\":\"YzcmCZNvbXocrsz9dm8e\",\"email\":\"admin@yinyuan.cn\",\"mobile\":\"13888888888\",\"status\":1,\"roleIdList\":[],\"createUserId\":1,\"createTime\":\"Nov 11, 2016 11:11:11 AM\"}', '127.0.0.1', '2017-09-07 17:56:42');
+INSERT INTO `sys_log` VALUES ('6', 'admin', '修改密码', 'cn.gzyinyuan.yy.modules.sys.controller.SysUserController.password()', '\"\"', '127.0.0.1', '2017-09-09 08:38:28');
+INSERT INTO `sys_log` VALUES ('7', 'admin', '修改密码', 'cn.gzyinyuan.yy.modules.sys.controller.SysUserController.password()', '\"\"', '127.0.0.1', '2017-09-09 08:38:35');
+INSERT INTO `sys_log` VALUES ('8', 'admin', '保存角色', 'cn.gzyinyuan.yy.modules.sys.controller.SysRoleController.save()', '{\"roleName\":\"aa\",\"remark\":\"cc\",\"menuIdList\":[]}', '127.0.0.1', '2017-09-11 15:57:47');
+INSERT INTO `sys_log` VALUES ('9', 'admin', '保存菜单', 'cn.gzyinyuan.yy.modules.sys.controller.SysMenuController.save()', '{\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"商城管理\",\"type\":0,\"icon\":\"fa fa-asterisk\",\"orderNum\":1}', '127.0.0.1', '2017-09-18 17:31:48');
+INSERT INTO `sys_log` VALUES ('10', 'admin', '修改菜单', 'cn.gzyinyuan.yy.modules.sys.controller.SysMenuController.update()', '{\"menuId\":31,\"parentId\":36,\"parentName\":\"商城管理\",\"name\":\"商铺管理\",\"url\":\"modules/mall/shops.html\",\"type\":1,\"icon\":\"fa fa-file-code-o\",\"orderNum\":6}', '127.0.0.1', '2017-09-18 17:32:48');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -379,7 +390,7 @@ CREATE TABLE `sys_menu` (
   `icon` varchar(50) DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -413,6 +424,12 @@ INSERT INTO `sys_menu` VALUES ('26', '4', '删除', null, 'sys:menu:delete', '2'
 INSERT INTO `sys_menu` VALUES ('27', '1', '参数管理', 'modules/sys/config.html', 'sys:config:list,sys:config:info,sys:config:save,sys:config:update,sys:config:delete', '1', 'fa fa-sun-o', '6');
 INSERT INTO `sys_menu` VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'fa fa-file-text-o', '7');
 INSERT INTO `sys_menu` VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'fa fa-file-image-o', '6');
+INSERT INTO `sys_menu` VALUES ('31', '36', '商铺管理', 'modules/mall/shops.html', null, '1', 'fa fa-file-code-o', '6');
+INSERT INTO `sys_menu` VALUES ('32', '31', '查看', null, 'shops:list,shops:info', '2', null, '6');
+INSERT INTO `sys_menu` VALUES ('33', '31', '新增', null, 'shops:save', '2', null, '6');
+INSERT INTO `sys_menu` VALUES ('34', '31', '修改', null, 'shops:update', '2', null, '6');
+INSERT INTO `sys_menu` VALUES ('35', '31', '删除', null, 'shops:delete', '2', null, '6');
+INSERT INTO `sys_menu` VALUES ('36', '0', '商城管理', null, null, '0', 'fa fa-asterisk', '1');
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -441,12 +458,13 @@ CREATE TABLE `sys_role` (
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建者ID',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', 'user', '普通用户', '1', '2017-07-06 19:26:37');
+INSERT INTO `sys_role` VALUES ('2', 'aa', 'cc', '1', '2017-09-11 15:57:48');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -532,7 +550,7 @@ CREATE TABLE `sys_user_token` (
 -- ----------------------------
 -- Records of sys_user_token
 -- ----------------------------
-INSERT INTO `sys_user_token` VALUES ('1', '583fd49245ff140040a3bd8b11422f39', '2017-09-08 05:15:29', '2017-09-07 17:15:29');
+INSERT INTO `sys_user_token` VALUES ('1', '02f340b7844c24145672abd7feecb01e', '2017-09-19 05:29:49', '2017-09-18 17:29:49');
 INSERT INTO `sys_user_token` VALUES ('2', '2e23e2e4f089b80fb63d8554e7761c9e', '2017-09-08 05:15:03', '2017-09-07 17:15:03');
 
 -- ----------------------------
@@ -570,3 +588,20 @@ CREATE TABLE `tb_user` (
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES ('1', 'mark', '13612345678', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2017-03-23 22:37:41');
+
+-- ----------------------------
+-- Table structure for t_shops
+-- ----------------------------
+DROP TABLE IF EXISTS `t_shops`;
+CREATE TABLE `t_shops` (
+  `shops_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `shops_name` varchar(50) NOT NULL COMMENT '商铺名称',
+  `status` varchar(20) NOT NULL COMMENT '状态：是否可用',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`shops_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商铺表';
+
+-- ----------------------------
+-- Records of t_shops
+-- ----------------------------

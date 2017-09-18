@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Shops {
+public class ShopsEntity {
     /**
      * 商铺Id
      */
