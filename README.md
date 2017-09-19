@@ -22,3 +22,5 @@
             6、类别管理
 # Other
     http://www.iconfont.cn/ 图标路劲
+# 让spring-boot-devtools生效的做法
+    Shift+Ctrl+Alt+/

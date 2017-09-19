@@ -1,5 +1,6 @@
 package cn.gzyinyuan.yy;
 
+import cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity;
 import cn.gzyinyuan.yy.modules.mall.shops.service.ShopsService;
 import cn.gzyinyuan.yy.modules.sys.service.SysUserService;
 import org.junit.Test;
@@ -37,5 +38,10 @@ public class YiyuanApplicationTest {
     @Test
     public void testLoad() {
         System.out.println(shopsService.queryObject(1l));
+    }
+
+    @Test
+    public void addShops() {
+        //ShopsEntity shopsEntity = ShopsEntity.builder().s
     }
 }

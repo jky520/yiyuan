@@ -5,18 +5,18 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity" id="shopsMap">
-        <result property="shopsId" column="shops_id"/>
+        <id property="shopsId" column="shops_id"/>
         <result property="userId" column="user_id"/>
-        <result property="shopsName" column="shops_name"/>
+        <result property="name" column="name"/>
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity">
+	<select id="queryObject" resultMap="shopsMap">
 		select * from t_shops where shops_id = #{value}
 	</select>
 
-	<select id="queryList" resultType="cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity">
+	<select id="queryList" resultMap="shopsMap">
 		select * from t_shops
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -39,14 +39,14 @@
 		insert into t_shops
 		(
 			`user_id`, 
-			`shops_name`, 
+			`name`, 
 			`status`, 
 			`create_time`
 		)
 		values
 		(
 			#{userId}, 
-			#{shopsName}, 
+			#{name}, 
 			#{status}, 
 			#{createTime}
 		)
@@ -56,7 +56,7 @@
 		update t_shops 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
-			<if test="shopsName != null">`shops_name` = #{shopsName}, </if>
+			<if test="name != null">`name` = #{name}, </if>
 			<if test="status != null">`status` = #{status}, </if>
 			<if test="createTime != null">`create_time` = #{createTime}</if>
 		</set>

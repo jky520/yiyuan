@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * 商铺实体
@@ -20,7 +21,7 @@ public class ShopsEntity {
     /**
      * 商铺Id
      */
-    private Long shosId;
+    private Long shopsId;
     /**
      * 掌柜Id(用户Id)
      */
@@ -29,8 +30,14 @@ public class ShopsEntity {
      * 商铺名称
      */
     private String name;
+
+    /**
+     * 状态
+     */
+    private Integer status;
+
     /**
      * 创建时间
      */
-    private LocalDate createAt;
+    private Date createTime;
 }
