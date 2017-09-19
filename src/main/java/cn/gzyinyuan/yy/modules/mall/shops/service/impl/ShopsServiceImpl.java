@@ -15,6 +15,7 @@ import cn.gzyinyuan.yy.modules.mall.shops.service.ShopsService;
 @Service("shopsService")
 public class ShopsServiceImpl implements ShopsService {
 
+	@Autowired
 	private ShopsDao shopsDao;
 
 	public ShopsEntity queryObject(Long shopsId){
