@@ -24,3 +24,8 @@
     http://www.iconfont.cn/ 图标路劲
 # 让spring-boot-devtools生效的做法
     Shift+Ctrl+Alt+/
+    
+# IDEA报错：lambda expressions are not supported at this language level解决办法
+ 1、打开 File --> Project Stucture-> Modules 选择项目设置Lanugage level
+ 
+ 2、打开 File --> Settings --> Compiler --> Java Compiler设置Project bytecode version；同时修改项目对应的Target bytecode version

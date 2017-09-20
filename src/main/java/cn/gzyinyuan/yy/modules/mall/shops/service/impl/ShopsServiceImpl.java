@@ -5,12 +5,9 @@ import cn.gzyinyuan.yy.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import cn.gzyinyuan.yy.modules.mall.shops.dao.ShopsDao;
 import cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity;
@@ -40,6 +37,7 @@ public class ShopsServiceImpl implements ShopsService {
 	}
 	
 	public void save(ShopsEntity shops){
+		shops.setCreateTime(new Date());
 		shopsDao.save(shops);
 	}
 	
@@ -64,11 +62,11 @@ public class ShopsServiceImpl implements ShopsService {
 		return userName;
 	}
 
-	public List<Map<String, Object>> getUsers() {
+	public List<Object> getUsers() {
 		return userDao.queryList(new HashMap<String, Object>())
 					.stream()
 					.map(x -> {
-						Map<String,Object> map = new HashMap<String,Object>();
+						Map<String,Object> map = new HashMap<>();
 						map.put("id",x.getUserId());
 						map.put("name",x.getUsername());
 						return map;

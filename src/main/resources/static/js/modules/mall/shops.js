@@ -53,9 +53,6 @@ $(function () {
     }
 });
 
-$(function () {
-	vm.getUsers();
-});
 
 var vm = new Vue({
 	el:'#rrapp',
@@ -64,6 +61,7 @@ var vm = new Vue({
 		title: null,
 		shops: {
             status:1,
+            userId:0
 		},
         users:[]
 	},
@@ -71,7 +69,10 @@ var vm = new Vue({
         getUsers: function () {
             $.get(baseURL + "shops/getUsers", function(r){
                 vm.users = r.users;
-                console.log(vm.users);
+                if (r.users.length == 0) {
+                    vm.shops = { userId:0 };
+				}
+                vm.users.unshift({"id":0,"name":"--请选择店主--"});
             });
         },
 		query: function () {
@@ -81,6 +82,7 @@ var vm = new Vue({
 			vm.showList = false;
 			vm.title = "新增";
 			vm.shops = { status:1 };
+            vm.getUsers();
 		},
 		update: function (event) {
 			var shopsId = getSelectedRow();
@@ -89,7 +91,8 @@ var vm = new Vue({
 			}
 			vm.showList = false;
             vm.title = "修改";
-            
+
+            vm.getUsers();
             vm.getInfo(shopsId)
 		},
 		saveOrUpdate: function (event) {

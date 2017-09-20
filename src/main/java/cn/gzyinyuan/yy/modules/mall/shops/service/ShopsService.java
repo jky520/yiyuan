@@ -1,7 +1,6 @@
 package cn.gzyinyuan.yy.modules.mall.shops.service;
 
 import cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity;
-import cn.gzyinyuan.yy.modules.sys.entity.SysUserEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -29,5 +28,5 @@ public interface ShopsService {
 
 	String getUserById(Long userId);
 
-	List<Map<String, Object>> getUsers();
+	List<Object> getUsers();
 }
