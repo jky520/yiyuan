@@ -1,6 +1,7 @@
 package cn.gzyinyuan.yy.modules.mall.shops.service;
 
 import cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity;
+import cn.gzyinyuan.yy.modules.sys.entity.SysUserEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -25,4 +26,6 @@ public interface ShopsService {
 	void delete(Long shopsId);
 	
 	void deleteBatch(Long[] shopsIds);
+
+	String getUserById(Long userId);
 }

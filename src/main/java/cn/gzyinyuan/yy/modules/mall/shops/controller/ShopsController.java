@@ -92,4 +92,13 @@ public class ShopsController {
         return R.ok();
     }
 
+    /**
+     * 根据用户Id获得用户名
+     * @param userId 用户id
+     * @return
+     */
+    @RequestMapping("/getUserNameById/{uid}")
+    public R getUserNameById(@PathVariable("uid") Long userId) {
+        return R.ok().put("username",shopsService.getUserById(userId));
+    }
 }

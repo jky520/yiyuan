@@ -1,5 +1,7 @@
 package cn.gzyinyuan.yy.modules.mall.shops.service.impl;
 
+import cn.gzyinyuan.yy.modules.sys.dao.SysUserDao;
+import cn.gzyinyuan.yy.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class ShopsServiceImpl implements ShopsService {
 
 	@Autowired
 	private ShopsDao shopsDao;
+
+	@Autowired
+	private SysUserDao userDao;
 
 	public ShopsEntity queryObject(Long shopsId){
 		return shopsDao.queryObject(shopsId);
@@ -44,6 +49,15 @@ public class ShopsServiceImpl implements ShopsService {
 	
 	public void deleteBatch(Long[] shopsIds){
 		shopsDao.deleteBatch(shopsIds);
+	}
+
+	public String getUserById(Long userId) {
+		SysUserEntity userEntity = userDao.queryObject(userId);
+		String userName = null;
+		if(userEntity != null) {
+			userName = userEntity.getUsername();
+		}
+		return userName;
 	}
 	
 }

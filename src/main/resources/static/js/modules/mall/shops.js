@@ -4,15 +4,14 @@ $(function () {
         datatype: "json",
         colModel: [			
 			{ label: '商铺ID', name: 'shopsId', index: 'shops_id', width: 50, key: true },
-			{ label: '店主', name: 'userId', index: 'user_id', width: 80, ditable:true, edittype:'select',
-                editoptions:{value:getUsers()} },
+			{ label: '店主', name: 'userId', index: 'user_id', width: 80, formatter: getUserNameById },
 			{ label: '商铺名称', name: 'name', index: 'name', width: 80 },
-			{ label: '状态', name: 'status', index: 'status', width: 80, fomatter: function(value, options, row) {
+			{ label: '状态', name: 'status', index: 'status', width: 80, formatter: function(value, options, row) {
 				return value === 0 ?
                     '<span class="label label-danger">停业中</span>' :
                     '<span class="label label-success">营业中</span>';
 			}},
-			{ label: '创建时间', name: 'createAt', index: 'create_at', width: 80 }
+			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }
         ],
 		viewrecords: true,
         height: 385,
@@ -39,6 +38,18 @@ $(function () {
         	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
         }
     });
+
+    function getUserNameById(value, options, row) {
+    	var $userName = "";
+        $.post({
+            url:baseURL + "shops/getUserNameById/"+value,
+            async:false,// 加了async后，它会等ajax执行完成后再执行后面的js
+            success:function(data){
+                $userName=data.username;
+            }
+        })
+        return $userName;
+    }
 });
 
 getUsers = function () {
