@@ -35,10 +35,14 @@
 		<div class="panel-heading">{{title}}</div>
 		<form class="form-horizontal">
 			<div class="form-group">
-			   	<div class="col-sm-2 control-label">用户ID</div>
+			   	<div class="col-sm-2 control-label">店主</div>
 			   	<div class="col-sm-10">
-			      <input type="text" class="form-control" v-model="shops.userId" placeholder="用户ID"/>
-			    </div>
+			      <!--<input type="text" class="form-control" v-model="shops.userId" placeholder="请选择店主"/>-->
+					<select v-model="shops.userId" class="form-control">
+						<option value="-1">--请选择店主--</option>
+						<option v-for="item in users" :value="item.id">{{item.name}}</option>
+					</select>
+				</div>
 			</div>
 			<div class="form-group">
 			   	<div class="col-sm-2 control-label">商铺名称</div>

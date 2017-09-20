@@ -39,6 +39,7 @@ $(function () {
         }
     });
 
+    // 根据userId获得用户名称
     function getUserNameById(value, options, row) {
     	var $userName = "";
         $.post({
@@ -52,10 +53,9 @@ $(function () {
     }
 });
 
-getUsers = function () {
-    var userNames = "1:姜坤银";
-    return userNames
-}
+$(function () {
+	vm.getUsers();
+});
 
 var vm = new Vue({
 	el:'#rrapp',
@@ -64,9 +64,16 @@ var vm = new Vue({
 		title: null,
 		shops: {
             status:1,
-		}
+		},
+        users:[]
 	},
 	methods: {
+        getUsers: function () {
+            $.get(baseURL + "shops/getUsers", function(r){
+                vm.users = r.users;
+                console.log(vm.users);
+            });
+        },
 		query: function () {
 			vm.reload();
 		},

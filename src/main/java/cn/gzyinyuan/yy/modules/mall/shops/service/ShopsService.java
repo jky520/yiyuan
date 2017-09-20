@@ -28,4 +28,6 @@ public interface ShopsService {
 	void deleteBatch(Long[] shopsIds);
 
 	String getUserById(Long userId);
+
+	List<Map<String, Object>> getUsers();
 }

@@ -5,11 +5,7 @@ import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cn.gzyinyuan.yy.modules.mall.shops.entity.ShopsEntity;
 import cn.gzyinyuan.yy.modules.mall.shops.service.ShopsService;
@@ -100,5 +96,14 @@ public class ShopsController {
     @RequestMapping("/getUserNameById/{uid}")
     public R getUserNameById(@PathVariable("uid") Long userId) {
         return R.ok().put("username",shopsService.getUserById(userId));
+    }
+
+    /**
+     * 获得所有的用户id和username的键值对
+     * @return
+     */
+    @GetMapping("/getUsers")
+    public R getUsers() {
+        return R.ok().put("users",shopsService.getUsers());
     }
 }
