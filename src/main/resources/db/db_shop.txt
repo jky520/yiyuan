@@ -1,8 +1,16 @@
-CREATE TABLE `shop_shops` (
+CREATE TABLE `t_shops` (
   `shops_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `shops_name` varchar(50) NOT NULL COMMENT '商铺名称',
+  `name` varchar(50) NOT NULL COMMENT '商铺名称',
   `status` varchar(20) NOT NULL COMMENT '状态：是否可用',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`shops_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='商铺表';
+
+CREATE TABLE `t_assort` (
+  `assort_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT '分类名称',
+  `img_url` varchar(200) NOT NULL COMMENT '商品分类图片路径',
+  `status` varchar(20) NOT NULL COMMENT '状态：是否可用',
+  PRIMARY KEY (`assort_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='商品分类';

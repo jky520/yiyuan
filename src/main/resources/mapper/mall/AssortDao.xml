@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gzyinyuan.yy.modules.mall.assort.dao.AssortDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cn.gzyinyuan.yy.modules.mall.assort.entity.AssortEntity" id="assortMap">
+        <result property="assortId" column="assort_id"/>
+        <result property="name" column="name"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="cn.gzyinyuan.yy.modules.mall.assort.entity.AssortEntity">
+		select * from t_assort where assort_id = #{value}
+	</select>
+
+	<select id="queryList" resultType="cn.gzyinyuan.yy.modules.mall.assort.entity.AssortEntity">
+		select * from t_assort
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by assort_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from t_assort 
+	</select>
+	 
+	<insert id="save" parameterType="cn.gzyinyuan.yy.modules.mall.assort.entity.AssortEntity" useGeneratedKeys="true" keyProperty="assortId">
+		insert into t_assort
+		(
+			`name`, 
+			`img_url`, 
+			`status`
+		)
+		values
+		(
+			#{name}, 
+			#{imgUrl}, 
+			#{status}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="cn.gzyinyuan.yy.modules.mall.assort.entity.AssortEntity">
+		update t_assort 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="imgUrl != null">`img_url` = #{imgUrl}, </if>
+			<if test="status != null">`status` = #{status}</if>
+		</set>
+		where assort_id = #{assortId}
+	</update>
+	
+	<delete id="delete">
+		delete from t_assort where assort_id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from t_assort where assort_id in 
+		<foreach item="assortId" collection="array" open="(" separator="," close=")">
+			#{assortId}
+		</foreach>
+	</delete>
+
+</mapper>

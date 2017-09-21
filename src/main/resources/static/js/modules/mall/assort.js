@@ -1,17 +1,21 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: baseURL + 'shops/list',
+        url: baseURL + 'assort/list',
         datatype: "json",
         colModel: [			
-			{ label: '商铺ID', name: 'shopsId', index: 'shops_id', width: 50, key: true },
-			{ label: '店主', name: 'userId', index: 'user_id', width: 80, formatter: getUserNameById },
-			{ label: '商铺名称', name: 'name', index: 'name', width: 80 },
+			{ label: '商品分类Id', name: 'assortId', index: 'assort_id', width: 50, key: true },
+			{ label: '分类名称', name: 'name', index: 'name', width: 80 }, 			
+			{ label: '商品分类图片', name: 'imgUrl', index: 'img_url', width: 80, formatter: function (value, options, row) {
+				console.log(!!value)
+				return value == null ?
+					'<i class="fa fa-cloud-upload fa-6"></i>' :
+					'<img src=baseURL+"images/"+value></img>';
+            }},
 			{ label: '状态', name: 'status', index: 'status', width: 80, formatter: function(value, options, row) {
-				return value === 0 ?
-                    '<span class="label label-danger">停业中</span>' :
-                    '<span class="label label-success">营业中</span>';
-			}},
-			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }
+                return value === 0 ?
+                    '<span class="label label-danger">停用</span>' :
+                    '<span class="label label-success">可用</span>';
+            }}
         ],
 		viewrecords: true,
         height: 385,
@@ -38,67 +42,41 @@ $(function () {
         	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
         }
     });
-
-    // 根据userId获得用户名称
-    function getUserNameById(value, options, row) {
-    	var $userName = "";
-        $.post({
-            url:baseURL + "shops/getUserNameById/"+value,
-            async:false,// 加了async后，它会等ajax执行完成后再执行后面的js
-            success:function(data){
-                $userName=data.username;
-            }
-        })
-        return $userName;
-    }
 });
-
 
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
 		showList: true,
 		title: null,
-		shops: {
-            status:1,
-            userId:0
-		},
-        users:[]
+		assort: {}
 	},
 	methods: {
-        getUsers: function () {
-            $.get(baseURL + "shops/getUsers", function(r){
-                vm.users = r.users;
-                vm.users.unshift({"id":0,"name":"--请选择店主--"}); // unshift 表示在数据最前面加数据
-            });
-        },
 		query: function () {
 			vm.reload();
 		},
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.shops = { status:1, userId:0 }; // 主要是实现数据绑定用的
-            vm.getUsers();
+			vm.assort = {};
 		},
 		update: function (event) {
-			var shopsId = getSelectedRow();
-			if(shopsId == null){
+			var assortId = getSelectedRow();
+			if(assortId == null){
 				return ;
 			}
 			vm.showList = false;
             vm.title = "修改";
-
-            vm.getUsers();
-            vm.getInfo(shopsId)
+            
+            vm.getInfo(assortId)
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.shops.shopsId == null ? "shops/save" : "shops/update";
+			var url = vm.assort.assortId == null ? "assort/save" : "assort/update";
 			$.ajax({
 				type: "POST",
 			    url: baseURL + url,
                 contentType: "application/json",
-			    data: JSON.stringify(vm.shops),
+			    data: JSON.stringify(vm.assort),
 			    success: function(r){
 			    	if(r.code === 0){
 						alert('操作成功', function(index){
@@ -111,17 +89,17 @@ var vm = new Vue({
 			});
 		},
 		del: function (event) {
-			var shopsIds = getSelectedRows();
-			if(shopsIds == null){
+			var assortIds = getSelectedRows();
+			if(assortIds == null){
 				return ;
 			}
 			
 			confirm('确定要删除选中的记录？', function(){
 				$.ajax({
 					type: "POST",
-				    url: baseURL + "shops/delete",
+				    url: baseURL + "assort/delete",
                     contentType: "application/json",
-				    data: JSON.stringify(shopsIds),
+				    data: JSON.stringify(assortIds),
 				    success: function(r){
 						if(r.code == 0){
 							alert('操作成功', function(index){
@@ -134,9 +112,9 @@ var vm = new Vue({
 				});
 			});
 		},
-		getInfo: function(shopsId){
-			$.get(baseURL + "shops/info/"+shopsId, function(r){
-                vm.shops = r.shops;
+		getInfo: function(assortId){
+			$.get(baseURL + "assort/info/"+assortId, function(r){
+                vm.assort = r.assort;
             });
 		},
 		reload: function (event) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>商铺表</title>
+<title>商品分类</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -23,9 +23,9 @@
 <div id="rrapp" v-cloak>
 	<div v-show="showList">
 		<div class="grid-btn">
-			<a v-if="hasPermission('shops:save')" class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			<a v-if="hasPermission('shops:update')" class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			<a v-if="hasPermission('shops:delete')" class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			<a v-if="hasPermission('assort:save')" class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			<a v-if="hasPermission('assort:update')" class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			<a v-if="hasPermission('assort:delete')" class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>
@@ -34,37 +34,28 @@
     <div v-show="!showList" class="panel panel-default">
 		<div class="panel-heading">{{title}}</div>
 		<form class="form-horizontal">
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">店主</div>
+											<div class="form-group">
+			   	<div class="col-sm-2 control-label">分类名称</div>
 			   	<div class="col-sm-10">
-			      <!--<input type="text" class="form-control" v-model="shops.userId" placeholder="请选择店主"/>-->
-					<select v-model="shops.userId" class="form-control">
-						<option v-for="item in users" :value="item.id">{{item.name}}</option>
-					</select>
-				</div>
+			      <input type="text" class="form-control" v-model="assort.name" placeholder="分类名称"/>
+			    </div>
 			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">商铺名称</div>
+									<div class="form-group">
+			   	<div class="col-sm-2 control-label">商品分类图片</div>
 			   	<div class="col-sm-10">
-			      <input type="text" class="form-control" v-model="shops.name" placeholder="商铺名称"/>
+			      <input type="text" class="form-control" v-model="assort.imgUrl" placeholder="商品分类图片路径"/>
 			    </div>
 			</div>
 			<div class="form-group">
-			   	<div class="col-sm-2 control-label">状态</div>
+				<div class="col-sm-2 control-label">状态</div>
 				<label class="radio-inline">
-					<input type="radio" name="status" value="0" v-model="shops.status"/> 停业
+					<input type="radio" name="status" value="0" v-model="assort.status"/> 停业
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="status" value="1" v-model="shops.status"/> 营业
+					<input type="radio" name="status" value="1" v-model="assort.status"/> 营业
 				</label>
 			</div>
-			<!--<div class="form-group">
-			   	<div class="col-sm-2 control-label">创建时间</div>
-			   	<div class="col-sm-10">
-			      <input type="text" class="form-control" v-model="shops.createTime" placeholder="创建时间"/>
-			    </div>
-			</div>-->
-			<div class="form-group">
+							<div class="form-group">
 				<div class="col-sm-2 control-label"></div> 
 				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
 				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
@@ -73,6 +64,6 @@
 	</div>
 </div>
 
-<script src="../../js/modules/mall/shops.js"></script>
+<script src="../../js/modules/mall/assort.js"></script>
 </body>
 </html>
