@@ -10,7 +10,7 @@ CREATE TABLE `t_shops` (
 CREATE TABLE `t_assort` (
   `assort_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '分类名称',
-  `img_url` varchar(200) NOT NULL COMMENT '商品分类图片路径',
+  `img_url` varchar(200) COMMENT '商品分类图片路径',
   `status` varchar(20) NOT NULL COMMENT '状态：是否可用',
   PRIMARY KEY (`assort_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='商品分类';

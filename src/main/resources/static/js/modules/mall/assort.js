@@ -6,10 +6,9 @@ $(function () {
 			{ label: '商品分类Id', name: 'assortId', index: 'assort_id', width: 50, key: true },
 			{ label: '分类名称', name: 'name', index: 'name', width: 80 }, 			
 			{ label: '商品分类图片', name: 'imgUrl', index: 'img_url', width: 80, formatter: function (value, options, row) {
-				console.log(!!value)
-				return value == null ?
-					'<i class="fa fa-cloud-upload fa-6"></i>' :
-					'<img src=baseURL+"images/"+value></img>';
+				return !value ?
+					'<i class="fa fa-cloud-upload fa-6" @click=""></i>' :
+					'<img src=baseURL+"images/"+value @click=""></img>';
             }},
 			{ label: '状态', name: 'status', index: 'status', width: 80, formatter: function(value, options, row) {
                 return value === 0 ?
@@ -49,7 +48,7 @@ var vm = new Vue({
 	data:{
 		showList: true,
 		title: null,
-		assort: {}
+		assort: { status:1 }
 	},
 	methods: {
 		query: function () {
@@ -58,7 +57,7 @@ var vm = new Vue({
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.assort = {};
+			vm.assort = { status:1 };
 		},
 		update: function (event) {
 			var assortId = getSelectedRow();

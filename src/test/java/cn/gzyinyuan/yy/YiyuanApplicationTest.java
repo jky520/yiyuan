@@ -43,5 +43,6 @@ public class YiyuanApplicationTest {
     @Test
     public void addShops() {
         //ShopsEntity shopsEntity = ShopsEntity.builder().s
+        System.out.println(17 << 1);
     }
 }
